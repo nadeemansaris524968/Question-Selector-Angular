@@ -1,3 +1,5 @@
+import { HttpModule } from '@angular/http';
+import { AllQuestionsService } from './services/all-questions.service';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -7,6 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AllQuestionsComponent } from './all-questions/all-questions.component';
 import { SelectedQuestionComponent } from './selected-question/selected-question.component';
 import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -14,17 +17,22 @@ import { HomeComponent } from './home/home.component';
     NavbarComponent,
     AllQuestionsComponent,
     SelectedQuestionComponent,
-    HomeComponent
+    HomeComponent,
+    NotFoundComponent
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'all-questions', component: AllQuestionsComponent },
-      { path: 'all-questions/:id', component: SelectedQuestionComponent }
+      { path: 'selected-question/:id', component: SelectedQuestionComponent },
+      { path: 'selected-question', component: NotFoundComponent },
     ])
   ],
-  providers: [],
+  providers: [
+    AllQuestionsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
