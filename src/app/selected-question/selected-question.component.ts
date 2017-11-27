@@ -43,4 +43,9 @@ export class SelectedQuestionComponent implements OnInit {
     // console.log("All questions ******** ************* **********\n", JSON.stringify(this.independentQuestions, undefined, 2));
   }
 
+  submit(form: HTMLInputElement){
+    console.log("**************  Form  **************    **************  Value  **************");
+    console.log(JSON.stringify(form.value, undefined, 2));
+  }
+
 }

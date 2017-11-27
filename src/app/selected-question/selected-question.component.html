@@ -1,5 +1,5 @@
 <div class="modal-body row">
-  <form #form="ngForm">
+  <form #form="ngForm" (ngSubmit)="submit(form)">
     <div class="col-lg-5 col-sm-12 left">
       <img [src]="img" alt="...">
     </div>
@@ -35,6 +35,7 @@
         </div>
       </div>
     </div>
+    <button class="btn btn-default">Submit</button>
   </form>
 </div>
 <p>{{form.value | json}}</p>
