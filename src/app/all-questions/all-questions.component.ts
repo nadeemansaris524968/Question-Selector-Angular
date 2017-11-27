@@ -12,7 +12,7 @@ export class AllQuestionsComponent implements OnInit {
   constructor(private service: AllQuestionsService) { }
 
   ngOnInit() {
-    this.service.getAllQuestions().subscribe( (questions) => {
+    this.service.getAllQuestions().subscribe((questions) => {
       this.questions = questions;
     });
   }

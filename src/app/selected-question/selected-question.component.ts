@@ -8,16 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./selected-question.component.css']
 })
 export class SelectedQuestionComponent implements OnInit {
-  selectedQuestionId;
-  constructor(private route: ActivatedRoute, private service: SelectedQuestionService) {
-
-  }
+  id;
+  selectedQuestion;
+  constructor(private route: ActivatedRoute,
+    private service: SelectedQuestionService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
-      this.selectedQuestionId = params.get('id');
-      console.log(this.selectedQuestionId);
-    })
+      this.id = params.get('id');
+    });
+    
+    this.service.getQuestion(this.id)
+      .subscribe((question) => {
+        this.selectedQuestion = question;
+      });
   }
 
 }
