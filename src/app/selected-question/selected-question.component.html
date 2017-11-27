@@ -1,5 +1,5 @@
 <div class="modal-body row">
-  <form [formGroup]="form">
+  <form #form="ngForm">
     <div class="col-lg-5 col-sm-12 left">
       <img [src]="img" alt="...">
     </div>
@@ -10,12 +10,26 @@
           <h2>Independent Questions</h2>
           <!-- Each Independent Question -->
           <div *ngFor="let question of independentQuestions; let indIndex = index">
-            <div class="form-group">
-              <label for="questionText">
-                <strong>Q. {{ indIndex + 1}}
-                  <span id="questionText" name="text">{{question.text}}</span>
-                </strong>
-              </label>
+            <div *ngIf="question.answers">
+              <div class="form-group">
+                <label for="questionText">
+                  <strong>Q.
+                    <span id="questionText">{{question.text}}</span>
+                  </strong>
+                </label>
+                <!-- Answer choices for each Independent Question -->
+                <div class="form-group">
+                  <label>
+                    <strong>Choose answer:</strong>
+                  </label>
+                  <div *ngFor="let answer of question.answers">
+                    <label>
+                      <input type="radio" name="answer{{indIndex}}" [value]="answer"
+                        (click)="independentAnswer(question, independentRadio)" #independentRadio>{{answer}}
+                    </label>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

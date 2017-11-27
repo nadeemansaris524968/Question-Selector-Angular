@@ -37,11 +37,10 @@ export class SelectedQuestionComponent implements OnInit {
 
   }
 
-  addToIndependentFormArray() {
-    let independent = this.selectedQuestion['independent'];
-    console.log(independent);
-    // for(var i = )
-    // (this.form.get('independent') as FormArray).push()
+  independentAnswer(independentQuestion: any, independentRadio: HTMLInputElement){
+    independentQuestion["answerChoice"] = independentRadio.value;
+    // console.log("Answered Question: *********\n" + JSON.stringify(independentQuestion, undefined, 2));
+    // console.log("All questions ******** ************* **********\n", JSON.stringify(this.independentQuestions, undefined, 2));
   }
 
 }

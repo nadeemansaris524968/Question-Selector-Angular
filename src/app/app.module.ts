@@ -1,4 +1,4 @@
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectedQuestionService } from './services/selected-question.service';
 import { HttpModule } from '@angular/http';
 import { AllQuestionsService } from './services/all-questions.service';
@@ -25,6 +25,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
   imports: [
     HttpModule,
     BrowserModule,
+    FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
