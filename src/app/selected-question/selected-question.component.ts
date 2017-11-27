@@ -53,6 +53,12 @@ export class SelectedQuestionComponent implements OnInit {
     //   (this.form.get('independent') as FormArray).push(independentQuestionFormControl);
     // }
     independentQuestion["answerChoice"] = independentRadio.value;
+    // console.log("**************  Complete Form Value  **************");
+    // console.log(JSON.stringify(this.cumulativeQuestion, undefined, 2));
+  }
+
+  ifAnswer(ifQuestion: any, ifRadio: HTMLInputElement) {
+    ifQuestion.if_question["answerChoice"] = ifRadio.value;
     console.log("**************  Complete Form Value  **************");
     console.log(JSON.stringify(this.cumulativeQuestion, undefined, 2));
   }

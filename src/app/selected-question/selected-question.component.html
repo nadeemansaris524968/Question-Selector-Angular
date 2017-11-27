@@ -5,6 +5,7 @@
     </div>
     <div class="col-lg-7 col-sm-12 right">
       <div class="row">
+        <!-- Independent Questions Begin Here -->
         <div class="row">
           <!-- Array of Independent Questions -->
           <div *ngIf="independentQuestions">
@@ -25,7 +26,8 @@
                     </label>
                     <div *ngFor="let answer of question.answers">
                       <label>
-                        <input type="radio" name="independentQuestion{{indIndex}}" [value]="answer" (click)="independentAnswer(question, independentRadio)" #independentRadio> {{answer}}
+                        <input type="radio" name="independentQuestion{{indIndex}}" [value]="answer" (click)="independentAnswer(question, independentRadio)"
+                          #independentRadio> {{answer}}
                       </label>
                     </div>
                   </div>
@@ -34,7 +36,34 @@
             </div>
           </div>
         </div>
-
+        <!-- If Then Quesitons Begin Here -->
+        <div class="row">
+          <!-- Array of If Then Questions -->
+          <div *ngIf="ifThens">
+            <h2>If Then Questions</h2>
+            <!-- Each If Then Question -->
+            <div *ngFor="let question of ifThens; let ifThenIndex = index">
+              <div class="form-group">
+                <label>
+                  <strong>Q.
+                    <span>{{ question.if_question.text }}</span>
+                  </strong>
+                </label>
+                <!-- Answer choices for each Independent Question -->
+                <div class="form-group">
+                  <label>
+                    <strong>Choose answer:</strong>
+                  </label>
+                  <div *ngFor="let answer of question.if_question.answers">
+                    <label>
+                      <input type="radio" name="ifQuestion{{ifThenIndex}}" [value]="answer" (click)="ifAnswer(question, ifRadio)" #ifRadio> {{answer}}
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <button class="btn btn-default">Submit</button>
