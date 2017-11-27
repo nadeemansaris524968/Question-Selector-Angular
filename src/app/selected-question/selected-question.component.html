@@ -42,22 +42,45 @@
           <div *ngIf="ifThens">
             <h2>If Then Questions</h2>
             <!-- Each If Then Question -->
-            <div *ngFor="let question of ifThens; let ifThenIndex = index">
+            <div *ngFor="let question of ifThens; let ifIndex = index" style="border-radius: 10px;background-color: rgb(209, 122, 139); padding: 15px;margin-top: 10px">
               <div class="form-group">
                 <label>
                   <strong>Q.
                     <span>{{ question.if_question.text }}</span>
                   </strong>
                 </label>
-                <!-- Answer choices for each Independent Question -->
+                <!-- Answer choices for each If Question -->
                 <div class="form-group">
                   <label>
                     <strong>Choose answer:</strong>
                   </label>
                   <div *ngFor="let answer of question.if_question.answers">
                     <label>
-                      <input type="radio" name="ifQuestion{{ifThenIndex}}" [value]="answer" (click)="ifAnswer(question, ifRadio)" #ifRadio> {{answer}}
+                      <input type="radio" name="ifQuestion{{ifIndex}}" [value]="answer" (click)="ifAnswer(question, ifRadio)" #ifRadio> {{answer}}
                     </label>
+                  </div>
+                </div>
+              </div>
+              <!-- Each Then Question -->
+              <div *ngIf="question.if_question.showThenQuestions && question.then_questions" style="border-radius: 10px ;background-color: rgb(122, 163, 235);padding: 15px; margin-top: 10px">
+                <div *ngFor="let thenQuestion of question.then_questions; let thenIndex = index">
+                  <div class="form-group">
+                    <label>
+                      <strong>Q. 
+                        <span>{{ thenQuestion.text }}</span>
+                      </strong>
+                    </label>
+                    <!-- Answer choices for each Then Question -->
+                    <div class="form-group">
+                      <label>
+                        <strong>Choose answer:</strong>
+                      </label>
+                      <div *ngFor="let answer of thenQuestion.answers">
+                        <label>
+                          <input type="radio" name="thenQuestion{{thenIndex}}" [value]="answer" (click)="thenAnswer(thenQuestion, thenRadio)" #thenRadio> {{answer}}
+                        </label>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

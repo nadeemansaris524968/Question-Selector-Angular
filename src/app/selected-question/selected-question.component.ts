@@ -58,9 +58,18 @@ export class SelectedQuestionComponent implements OnInit {
   }
 
   ifAnswer(ifQuestion: any, ifRadio: HTMLInputElement) {
+
+    if (ifRadio.value === "Yes")
+      ifQuestion.if_question["showThenQuestions"] = true;
+    else 
+      ifQuestion.if_question["showThenQuestions"] = false;
+    
     ifQuestion.if_question["answerChoice"] = ifRadio.value;
-    console.log("**************  Complete Form Value  **************");
-    console.log(JSON.stringify(this.cumulativeQuestion, undefined, 2));
+  }
+
+  thenAnswer(thenQuestion: any, thenRadio: HTMLInputElement) {
+
+    thenQuestion["answerChoice"] = thenRadio.value;
   }
 
   submit(form: HTMLInputElement) {
