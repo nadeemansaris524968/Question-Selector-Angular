@@ -1,4 +1,4 @@
-import { FormArray, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { SelectedQuestionService } from '../services/selected-question.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -39,6 +39,8 @@ export class SelectedQuestionComponent implements OnInit {
 
   independentAnswer(independentQuestion: any, independentRadio: HTMLInputElement){
     independentQuestion["answerChoice"] = independentRadio.value;
+    (this.form.get('independent') as FormArray).push(new FormControl(independentQuestion));
+    console.log(this.form.value);
     // console.log("Answered Question: *********\n" + JSON.stringify(independentQuestion, undefined, 2));
     // console.log("All questions ******** ************* **********\n", JSON.stringify(this.independentQuestions, undefined, 2));
   }

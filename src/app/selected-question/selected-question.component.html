@@ -1,5 +1,5 @@
 <div class="modal-body row">
-  <form #form="ngForm" (ngSubmit)="submit(form)">
+  <form [formGroup]="form" (ngSubmit)="submit(form)">
     <div class="col-lg-5 col-sm-12 left">
       <img [src]="img" alt="...">
     </div>
@@ -14,7 +14,7 @@
               <div class="form-group">
                 <label for="questionText">
                   <strong>Q.
-                    <span id="questionText">{{question.text}}</span>
+                    <span id="questionText" name="text" ngModel [innerHTML]="question.text"></span>
                   </strong>
                 </label>
                 <!-- Answer choices for each Independent Question -->
@@ -24,8 +24,7 @@
                   </label>
                   <div *ngFor="let answer of question.answers">
                     <label>
-                      <input type="radio" name="answer{{indIndex}}" [value]="answer"
-                        (click)="independentAnswer(question, independentRadio)" #independentRadio>{{answer}}
+                      <input type="radio" name="answer{{indIndex}}" [value]="answer" (click)="independentAnswer(question, independentRadio)" #independentRadio>{{answer}}
                     </label>
                   </div>
                 </div>
