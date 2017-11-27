@@ -1,40 +1,42 @@
 <div class="modal-body row">
-  <form [formGroup]="form" (ngSubmit)="submit(form)">
+  <form #form="ngForm" (ngSubmit)="submit(form)">
     <div class="col-lg-5 col-sm-12 left">
       <img [src]="img" alt="...">
     </div>
     <div class="col-lg-7 col-sm-12 right">
-      <!-- Array of Independent Questions -->
       <div class="row">
-        <div *ngIf="independentQuestions">
-          <h2>Independent Questions</h2>
-          <!-- Each Independent Question -->
-          <div *ngFor="let question of independentQuestions; let indIndex = index">
-            <div *ngIf="question.answers">
-              <div class="form-group">
-                <label for="questionText">
-                  <strong>Q.
-                    <span id="questionText">{{question.text}}</span>
-                  </strong>
-                </label>
-                <!-- Answer choices for each Independent Question -->
+        <div class="row">
+          <!-- Array of Independent Questions -->
+          <div *ngIf="independentQuestions">
+            <h2>Independent Questions</h2>
+            <!-- Each Independent Question -->
+            <div *ngFor="let question of independentQuestions; let indIndex = index">
+              <div *ngIf="question.answers">
                 <div class="form-group">
-                  <label>
-                    <strong>Choose answer:</strong>
+                  <label for="questionText">
+                    <strong>Q.
+                      <span id="questionText">{{question.text}}</span>
+                    </strong>
                   </label>
-                  <div *ngFor="let answer of question.answers">
+                  <!-- Answer choices for each Independent Question -->
+                  <div class="form-group">
                     <label>
-                      <input type="radio" name="answer{{indIndex}}" [value]="answer" (click)="independentAnswer(question, independentRadio)" #independentRadio> {{answer}}
+                      <strong>Choose answer:</strong>
                     </label>
+                    <div *ngFor="let answer of question.answers">
+                      <label>
+                        <input type="radio" name="independentQuestion{{indIndex}}" [value]="answer" (click)="independentAnswer(question, independentRadio)" #independentRadio> {{answer}}
+                      </label>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </div>
     <button class="btn btn-default">Submit</button>
   </form>
 </div>
-<p>{{form.value | json}}</p>
