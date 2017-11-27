@@ -10,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SelectedQuestionComponent implements OnInit {
   id: string;
-
+  cumulativeQuestion:any;
+  independentQuestionText: string;
+  independentAnswerChoice: string;
   selectedQuestion: any;
   independentQuestions: any[];
   ifThens: any[];
@@ -31,23 +33,31 @@ export class SelectedQuestionComponent implements OnInit {
 
     this.service.getQuestion(this.id)
       .subscribe((question) => {
+        this.cumulativeQuestion = question;
         this.independentQuestions = question.independent;
         this.img = question.img;
       });
 
   }
 
-  independentAnswer(independentQuestion: any, independentRadio: HTMLInputElement){
-    independentQuestion["answerChoice"] = independentRadio.value;
-    (this.form.get('independent') as FormArray).push(new FormControl(independentQuestion));
-    console.log(this.form.value);
-    // console.log("Answered Question: *********\n" + JSON.stringify(independentQuestion, undefined, 2));
-    // console.log("All questions ******** ************* **********\n", JSON.stringify(this.independentQuestions, undefined, 2));
+  independentAnswer(independentQuestion: any, independentRadio: HTMLInputElement) {
+
+    // When the form is loaded and no question was answered or 
+    // If a different question was answered
+    if (!this.independentQuestionText || this.independentQuestionText !== independentQuestion.text) {
+      this.independentQuestionText = independentQuestion.text;
+      independentQuestion["answerChoice"] = independentRadio.value;
+
+      let independentQuestionFormControl = new FormControl(independentQuestion);
+      (this.form.get('independent') as FormArray).push(independentQuestionFormControl);
+    }
+
+    console.log(JSON.stringify(this.form.value, undefined, 2));
   }
 
-  submit(form: HTMLInputElement){
-    console.log("**************  Form  **************    **************  Value  **************");
-    console.log(JSON.stringify(form.value, undefined, 2));
+  submit(form: HTMLInputElement) {
+    console.log("**************  Cumulative  **************    **************  Question  **************");
+    console.log(JSON.stringify(this.cumulativeQuestion, undefined, 2));
   }
 
 }

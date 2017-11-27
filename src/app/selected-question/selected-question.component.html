@@ -14,7 +14,7 @@
               <div class="form-group">
                 <label for="questionText">
                   <strong>Q.
-                    <span id="questionText" name="text" ngModel [innerHTML]="question.text"></span>
+                    <span id="questionText">{{question.text}}</span>
                   </strong>
                 </label>
                 <!-- Answer choices for each Independent Question -->
@@ -24,7 +24,7 @@
                   </label>
                   <div *ngFor="let answer of question.answers">
                     <label>
-                      <input type="radio" name="answer{{indIndex}}" [value]="answer" (click)="independentAnswer(question, independentRadio)" #independentRadio>{{answer}}
+                      <input type="radio" name="answer{{indIndex}}" [value]="answer" (click)="independentAnswer(question, independentRadio)" #independentRadio> {{answer}}
                     </label>
                   </div>
                 </div>
