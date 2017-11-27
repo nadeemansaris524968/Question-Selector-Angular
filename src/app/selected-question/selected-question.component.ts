@@ -43,15 +43,6 @@ export class SelectedQuestionComponent implements OnInit {
 
   independentAnswer(independentQuestion: any, independentRadio: HTMLInputElement) {
 
-    // When the form is loaded and no question was answered or 
-    // If a different question was answered
-    // if (!this.independentQuestionText || this.independentQuestionText !== independentQuestion.text) {
-    //   this.independentQuestionText = independentQuestion.text;
-    //   independentQuestion["answerChoice"] = independentRadio.value;
-
-    //   let independentQuestionFormControl = new FormControl(independentQuestion);
-    //   (this.form.get('independent') as FormArray).push(independentQuestionFormControl);
-    // }
     independentQuestion["answerChoice"] = independentRadio.value;
     // console.log("**************  Complete Form Value  **************");
     // console.log(JSON.stringify(this.cumulativeQuestion, undefined, 2));
@@ -73,7 +64,8 @@ export class SelectedQuestionComponent implements OnInit {
   }
 
   submit(form: HTMLInputElement) {
-    
+    console.log("**************  Complete Form Value  **************");
+    console.log(JSON.stringify(this.cumulativeQuestion, undefined, 2));
   }
 
 }
