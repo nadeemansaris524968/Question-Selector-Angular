@@ -1,5 +1,19 @@
-<ul class="list-group">
+<!-- <ul class="list-group">
   <li *ngFor="let question of questions" class="list-group-item">
     <a [routerLink]="['/selected-question', question._id]">{{question._id}}</a>
   </li>
-</ul>
+</ul> -->
+
+<div *ngFor="let question of questions; index as i" class="media">
+    <div class="media-left">
+      <a [routerLink]="['/selected-question', question._id]">
+        <img class="avatar media-object" src="{{ question.img }}" alt="...">
+      </a>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">
+        <a [routerLink]="['/selected-question', question._id]">Case {{i+1}}</a>
+      </h4>
+      <a href="#">Dummy link</a>
+    </div>
+  </div>
