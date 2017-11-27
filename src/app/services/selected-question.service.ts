@@ -2,6 +2,8 @@ import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class SelectedQuestionService {
@@ -10,6 +12,12 @@ export class SelectedQuestionService {
   constructor(private http: Http) { }
 
   getQuestion(id: string) {
-    return this.http.get(this.url + '/' + id).map(response => response.json());
+    return this.http.get(this.url + '/' + id)
+      .map(response => response.json())
+      .catch(this.handleError);
+  }
+
+  private handleError(error: Response){
+    return Observable.throw(error);
   }
 }
