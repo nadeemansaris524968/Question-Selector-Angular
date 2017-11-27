@@ -1,3 +1,4 @@
+import { SelectedQuestionService } from './services/selected-question.service';
 import { HttpModule } from '@angular/http';
 import { AllQuestionsService } from './services/all-questions.service';
 import { RouterModule } from '@angular/router';
@@ -31,7 +32,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ])
   ],
   providers: [
-    AllQuestionsService
+    AllQuestionsService,
+    SelectedQuestionService
   ],
   bootstrap: [AppComponent]
 })
