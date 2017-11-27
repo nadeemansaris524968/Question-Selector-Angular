@@ -9,8 +9,14 @@
         <div *ngIf="independentQuestions">
           <h2>Independent Questions</h2>
           <!-- Each Independent Question -->
-          <div *ngFor="let question of independentQuestions; let i = index">
-            
+          <div *ngFor="let question of independentQuestions; let indIndex = index">
+            <div class="form-group">
+              <label for="questionText">
+                <strong>Q. {{ indIndex + 1}}
+                  <span id="questionText" name="text">{{question.text}}</span>
+                </strong>
+              </label>
+            </div>
           </div>
         </div>
       </div>

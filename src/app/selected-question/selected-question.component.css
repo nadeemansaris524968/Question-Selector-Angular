@@ -6,18 +6,16 @@
     display : flex;
     justify-content : center;
     align-items : center;
-    background-color:#3d231b;
     height : 100%;
     color : #FFF;
-  
+    padding: 5px;
   }
   .right{
     display : flex;
-    justify-content : center;
+    text-align: left;
     align-items : center;
     background-color:#FFF;
     height : 100%;
-    color : #3d231b;
   }
   @media (max-width: 1200px) { 
     .left{
