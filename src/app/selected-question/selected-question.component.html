@@ -67,21 +67,23 @@
                 <!-- Each Then Question -->
                 <div *ngIf="question.if_question.showThenQuestions && question.then_questions.length > 0" style="border-radius: 10px ;background-color: rgb(122, 163, 235);padding: 15px; margin-top: 10px">
                   <div *ngFor="let thenQuestion of question.then_questions; let thenIndex = index">
-                    <div class="form-group">
-                      <label>
-                        <strong>Q.
-                          <span>{{ thenQuestion.text }}</span>
-                        </strong>
-                      </label>
-                      <!-- Answer choices for each Then Question -->
+                    <div *ngIf="thenQuestion.answers !== null">
                       <div class="form-group">
                         <label>
-                          <strong>Choose answer:</strong>
+                          <strong>Q.
+                            <span>{{ thenQuestion.text }}</span>
+                          </strong>
                         </label>
-                        <div *ngFor="let answer of thenQuestion.answers">
+                        <!-- Answer choices for each Then Question -->
+                        <div class="form-group">
                           <label>
-                            <input type="radio" name="thenQuestion{{thenIndex}}" [value]="answer" (click)="thenAnswer(thenQuestion, thenRadio)" #thenRadio> {{answer}}
+                            <strong>Choose answer:</strong>
                           </label>
+                          <div *ngFor="let answer of thenQuestion.answers">
+                            <label>
+                              <input type="radio" name="thenQuestion{{thenIndex}}" [value]="answer" (click)="thenAnswer(thenQuestion, thenRadio)" #thenRadio> {{answer}}
+                            </label>
+                          </div>
                         </div>
                       </div>
                     </div>
