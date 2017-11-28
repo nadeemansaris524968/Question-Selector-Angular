@@ -18,6 +18,7 @@ export class SelectedQuestionService {
   }
 
   patchQuestion(answeredQuestion: any) {
+    console.log(JSON.stringify(answeredQuestion, undefined, 2));
     
     // this.http.patch(this.url + '/' + answeredQuestion._id, answeredQuestion);
   }

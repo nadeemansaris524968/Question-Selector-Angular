@@ -44,6 +44,7 @@
               <h2>If Then Questions</h2>
               <!-- Each If Then Question -->
               <div *ngFor="let question of ifThens; let ifIndex = index" style="border-radius: 10px;background-color: rgb(209, 122, 139); padding: 15px;margin-top: 10px">
+                <!-- Each If Question -->
                 <div class="form-group">
                   <label>
                     <strong>Q.
@@ -62,8 +63,9 @@
                     </div>
                   </div>
                 </div>
+                <!-- If Question Ends Here -->
                 <!-- Each Then Question -->
-                <div *ngIf="question.if_question.showThenQuestions && question.then_questions" style="border-radius: 10px ;background-color: rgb(122, 163, 235);padding: 15px; margin-top: 10px">
+                <div *ngIf="question.if_question.showThenQuestions && question.then_questions.length > 0" style="border-radius: 10px ;background-color: rgb(122, 163, 235);padding: 15px; margin-top: 10px">
                   <div *ngFor="let thenQuestion of question.then_questions; let thenIndex = index">
                     <div class="form-group">
                       <label>
