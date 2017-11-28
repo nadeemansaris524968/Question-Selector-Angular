@@ -3,8 +3,8 @@
     <a [routerLink]="['/selected-question', question._id]">{{question._id}}</a>
   </li>
 </ul> -->
-
-<div *ngFor="let question of questions; index as i" class="media">
+<div style="background-color:rgb(218, 216, 216); padding: 15px; border-radius: 10px;">
+  <div *ngFor="let question of questions; index as i" class="media">
     <div class="media-left">
       <a [routerLink]="['/selected-question', question._id]">
         <img class="avatar media-object" src="{{ question.img }}" alt="...">
@@ -17,3 +17,4 @@
       <a href="#">Dummy link</a>
     </div>
   </div>
+</div>

@@ -1,5 +1,5 @@
 <div class="modal-body row">
-  <form #form="ngForm" (ngSubmit)="submit(form)">
+  <form>
     <div class="row">
       <div class="col-lg-5 col-sm-12 left">
         <img [src]="img" style="border-radius: 10px" alt="...">
@@ -93,7 +93,7 @@
     </div>
     <div class="row" style="margin: 20px;">
       <div style="text-align: center;">
-        <button class="btn btn-primary">Submit</button>
+        <button class="btn btn-primary" (click)="submit()">Submit</button>
       </div>
     </div>
   </form>

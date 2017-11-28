@@ -12,8 +12,6 @@ export class SelectedQuestionComponent implements OnInit {
   id: string;
   cumulativeQuestion:any;
   independentQuestionText: string;
-  // independentAnswerChoice: string;
-  // selectedQuestion: any;
   independentQuestions: any[];
   ifThens: any[];
   img: string;
@@ -64,8 +62,7 @@ export class SelectedQuestionComponent implements OnInit {
   }
 
   submit(form: HTMLInputElement) {
-    console.log("**************  Complete Form Value  **************");
-    console.log(JSON.stringify(this.cumulativeQuestion, undefined, 2));
+    this.service.patchQuestion(this.cumulativeQuestion);
   }
 
 }

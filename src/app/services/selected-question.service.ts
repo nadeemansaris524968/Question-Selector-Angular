@@ -17,6 +17,11 @@ export class SelectedQuestionService {
       .catch(this.handleError);
   }
 
+  patchQuestion(answeredQuestion: any) {
+    
+    // this.http.patch(this.url + '/' + answeredQuestion._id, answeredQuestion);
+  }
+
   private handleError(error: Response){
     return Observable.throw(error);
   }
