@@ -9,7 +9,7 @@
           <!-- Independent Questions Begin Here -->
           <div class="row">
             <!-- Array of Independent Questions -->
-            <div *ngIf="independentQuestions">
+            <div *ngIf="independentQuestions.length > 0">
               <h2>Independent Questions</h2>
               <!-- Each Independent Question -->
               <div *ngFor="let question of independentQuestions; let indIndex = index">

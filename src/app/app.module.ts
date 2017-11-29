@@ -29,7 +29,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ReactiveFormsModule,
     RouterModule.forRoot([
       // { path: '', component: HomeComponent },
-      { path: 'all-questions', component: AllQuestionsComponent },
+      { path: '', component: AllQuestionsComponent },
       { path: 'selected-question/:id', component: SelectedQuestionComponent },
       // { path: 'selected-question', component: NotFoundComponent },
     ])
