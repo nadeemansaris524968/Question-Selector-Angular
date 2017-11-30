@@ -1,3 +1,4 @@
+import { QuestionAnsweringService } from './services/question-answering.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectedQuestionService } from './services/selected-question.service';
 import { HttpModule } from '@angular/http';
@@ -36,7 +37,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   providers: [
     AllQuestionsService,
-    SelectedQuestionService
+    SelectedQuestionService,
+    QuestionAnsweringService
   ],
   bootstrap: [AppComponent]
 })

@@ -25,7 +25,7 @@ export class SelectedQuestionComponent implements OnInit {
 
   });
 
-  constructor(private route: ActivatedRoute, private service: SelectedQuestionService) {
+  constructor(private route: ActivatedRoute, private questionSelectorService: SelectedQuestionService) {
   }
 
   ngOnInit() {
@@ -34,7 +34,7 @@ export class SelectedQuestionComponent implements OnInit {
         this.id = params.get('id');
       });
 
-    this.service.getQuestion(this.id)
+    this.questionSelectorService.getQuestion(this.id)
       .subscribe((question) => {
         this.cumulativeQuestion = question;
         this.independentQuestions = question.independent;
@@ -84,7 +84,7 @@ export class SelectedQuestionComponent implements OnInit {
   }
 
   submit(form: HTMLInputElement) {
-    this.service.patchQuestion(this.cumulativeQuestion);
+    this.questionSelectorService.patchQuestion(this.cumulativeQuestion);
   }
 
   // ************** HELPER METHODS ************** //
