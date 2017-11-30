@@ -8,4 +8,18 @@ export class RootCase {
     state?: any;
     nulled: boolean;
     name: string;
+
+    constructor() {
+        this.caseUID = null;
+        this.questions = [];
+        this.specialty = null;
+        this.source = null;
+        this.state = null;
+        this.nulled = true;
+        this.name = '';
+    }
+
+    addQuestions(question: Question) {
+        this.questions.push(question);
+    }
 }

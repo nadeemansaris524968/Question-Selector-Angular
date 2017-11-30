@@ -11,4 +11,23 @@ export class QuestionText {
     text: string[];
     concepts?: any;
     nulled: boolean;
+
+    constructor() {
+        this.jsonModelName = 'com.ibm.medsieve.exam.models.QuestionText';
+        this.vocabsource = 'EXAMBANK';
+        this.vocabType = null;
+        this.searchkey = null;
+        this.score = null;
+        this.numhits = null;
+        this.name = null;
+        this.textUID = null;
+        this.source = null;
+        this.text = [];
+        this.concepts = null;
+        this.nulled = true;
+    }
+
+    addText(text: string) {
+        this.text.push(text);
+    }
 }
