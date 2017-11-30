@@ -42,48 +42,56 @@ export class SelectedQuestionComponent implements OnInit {
         this.ifThens = question.if_thens;
         this.img = question.img;
       });
-
   }
 
   independentAnswer(independentQuestion: any, independentRadio: HTMLInputElement) {
 
     independentQuestion["answerChoice"] = independentRadio.value;
 
-    // Get img src 
-    let imageURL = this.cumulativeQuestion.img;
-
-    let media = new Media();
-
-    let questionMedia = new QuestionMedia();
-    questionMedia.setMediaURL(imageURL);
-    questionMedia.setMedia(media);
-
-    // Get question text 
-    let text = independentQuestion.text;
-
-    let questionText = new QuestionText();
-    questionText.addText(text);
-
-    // Get answer choices
-    let answers: string[] = independentQuestion.answers;
-    let question = new Question();
-    question.setQuestionText(questionText);
-    question.addQuestionMedia(questionMedia);
-
-    for (var i = 0; i < answers.length; i++) {
-      question.addAnswerChoices(new AnswerChoice(answers[i]));
-    }
-
-    question.addCorrectAnswerChoice(independentRadio.value);
+    let question = this.getQuestion(
+                      independentQuestion.text, 
+                      independentQuestion.answers, 
+                      independentRadio.value);
 
     // construct RootCase - set Question
     let rootCase = new RootCase();
     rootCase.addQuestions(question);
 
     console.log(JSON.stringify(rootCase, undefined, 2));
+  }
 
-    // console.log("**************  Complete Form Value  **************");
-    // console.log(JSON.stringify(this.cumulativeQuestion, undefined, 2));
+  getImageURL() {
+    return this.cumulativeQuestion.img;
+  }
+
+  getQuestionMedia() {
+    let media = new Media();
+
+    let questionMedia = new QuestionMedia();
+    questionMedia.setMediaURL(this.getImageURL());
+    questionMedia.setMedia(media);
+
+    return questionMedia;
+  }
+
+  getQuestionText(text: string) {
+    let questionText = new QuestionText();
+    questionText.addText(text);
+
+    return questionText;
+  }
+
+  getQuestion(text: string, answerChoices: string[], correctAnswerChoice: string) {
+    let question = new Question();
+    question.setQuestionText(this.getQuestionText(text));
+    question.addQuestionMedia(this.getQuestionMedia());
+    for (var i = 0; i < answerChoices.length; i++) {
+      question.addAnswerChoices(new AnswerChoice(answerChoices[i]));
+    }
+
+    question.addCorrectAnswerChoice(correctAnswerChoice);
+
+    return question;
   }
 
   ifAnswer(ifQuestion: any, ifRadio: HTMLInputElement) {
