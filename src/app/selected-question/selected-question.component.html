@@ -1,90 +1,88 @@
-<div class="modal-body row">
-  <form>
-    <div class="row">
-      <div class="col-lg-5 col-sm-12 left">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-5">
+      <div style="text-align: center">
         <img [src]="img" style="border-radius: 10px" alt="...">
       </div>
-      <div class="col-lg-7 col-sm-12 right">
-        <div class="row">
-          <!-- Independent Questions Begin Here -->
-          <div class="row">
-            <!-- Array of Independent Questions -->
-            <div *ngIf="independentQuestions.length > 0">
-              <h2>Independent Questions</h2>
-              <!-- Each Independent Question -->
-              <div *ngFor="let question of independentQuestions; let indIndex = index">
-                <div *ngIf="question.answers">
-                  <div class="form-group">
-                    <label for="questionText">
-                      <strong>Q.
-                        <span id="questionText">{{question.text}}</span>
-                      </strong>
+    </div>
+    <div class="col-lg-7">
+      <!-- Independent Questions Begin Here -->
+      <div class="row" style="margin: 10px;">
+        <!-- Array of Independent Questions -->
+        <div *ngIf="independentQuestions.length > 0">
+          <h2>Independent Questions</h2>
+          <!-- Each Independent Question -->
+          <div *ngFor="let question of independentQuestions; let indIndex = index">
+            <div *ngIf="question.answers">
+              <div class="form-group">
+                <label for="questionText">
+                  <strong>Q.
+                    <span id="questionText">{{question.text}}</span>
+                  </strong>
+                </label>
+                <!-- Answer choices for each Independent Question -->
+                <div class="form-group">
+                  <label>
+                    <strong>Choose answer:</strong>
+                  </label>
+                  <div *ngFor="let answer of question.answers">
+                    <label>
+                      <input type="radio" name="independentQuestion{{indIndex}}" [value]="answer" (click)="independentAnswer(question, independentRadio)"
+                        #independentRadio> {{answer}}
                     </label>
-                    <!-- Answer choices for each Independent Question -->
-                    <div class="form-group">
-                      <label>
-                        <strong>Choose answer:</strong>
-                      </label>
-                      <div *ngFor="let answer of question.answers">
-                        <label>
-                          <input type="radio" name="independentQuestion{{indIndex}}" [value]="answer" (click)="independentAnswer(question, independentRadio)"
-                            #independentRadio> {{answer}}
-                        </label>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- If Then Quesitons Begin Here -->
-          <div class="row">
-            <!-- Array of If Then Questions -->
-            <div *ngIf="ifThens">
-              <h2>If Then Questions</h2>
-              <!-- Each If Then Question -->
-              <div *ngFor="let question of ifThens; let ifIndex = index" style="border-radius: 10px;background-color: rgb(209, 122, 139); padding: 15px;margin-top: 10px">
-                <!-- Each If Question -->
-                <div class="form-group">
+        </div>
+      </div>
+      <!-- If Then Quesitons Begin Here -->
+      <div class="row" style="margin: 10px;">
+        <!-- Array of If Then Questions -->
+        <div *ngIf="ifThens">
+          <h2>If Then Questions</h2>
+          <!-- Each If Then Question -->
+          <div *ngFor="let question of ifThens; let ifIndex = index" style="border-radius: 10px;background-color: rgb(209, 122, 139); padding: 15px;margin-top: 10px">
+            <!-- Each If Question -->
+            <div class="form-group">
+              <label>
+                <strong>Q.
+                  <span>{{ question.if_question.text }}</span>
+                </strong>
+              </label>
+              <!-- Answer choices for each If Question -->
+              <div class="form-group">
+                <label>
+                  <strong>Choose answer:</strong>
+                </label>
+                <div *ngFor="let answer of question.if_question.answers">
                   <label>
-                    <strong>Q.
-                      <span>{{ question.if_question.text }}</span>
-                    </strong>
+                    <input type="radio" name="ifQuestion{{ifIndex}}" [value]="answer" (click)="ifAnswer(question, ifRadio)" #ifRadio> {{answer}}
                   </label>
-                  <!-- Answer choices for each If Question -->
+                </div>
+              </div>
+            </div>
+            <!-- If Question Ends Here -->
+            <!-- Each Then Question -->
+            <div *ngIf="question.if_question.showThenQuestions && question.then_questions.length > 0" style="border-radius: 10px ;background-color: rgb(122, 163, 235);padding: 15px; margin-top: 10px">
+              <div *ngFor="let thenQuestion of question.then_questions; let thenIndex = index">
+                <div *ngIf="thenQuestion.answers !== null">
                   <div class="form-group">
                     <label>
-                      <strong>Choose answer:</strong>
+                      <strong>Q.
+                        <span>{{ thenQuestion.text }}</span>
+                      </strong>
                     </label>
-                    <div *ngFor="let answer of question.if_question.answers">
+                    <!-- Answer choices for each Then Question -->
+                    <div class="form-group">
                       <label>
-                        <input type="radio" name="ifQuestion{{ifIndex}}" [value]="answer" (click)="ifAnswer(question, ifRadio)" #ifRadio> {{answer}}
+                        <strong>Choose answer:</strong>
                       </label>
-                    </div>
-                  </div>
-                </div>
-                <!-- If Question Ends Here -->
-                <!-- Each Then Question -->
-                <div *ngIf="question.if_question.showThenQuestions && question.then_questions.length > 0" style="border-radius: 10px ;background-color: rgb(122, 163, 235);padding: 15px; margin-top: 10px">
-                  <div *ngFor="let thenQuestion of question.then_questions; let thenIndex = index">
-                    <div *ngIf="thenQuestion.answers !== null">
-                      <div class="form-group">
+                      <div *ngFor="let answer of thenQuestion.answers">
                         <label>
-                          <strong>Q.
-                            <span>{{ thenQuestion.text }}</span>
-                          </strong>
+                          <input type="radio" name="thenQuestion{{thenIndex}}" [value]="answer" (click)="thenAnswer(thenQuestion, thenRadio)" #thenRadio> {{answer}}
                         </label>
-                        <!-- Answer choices for each Then Question -->
-                        <div class="form-group">
-                          <label>
-                            <strong>Choose answer:</strong>
-                          </label>
-                          <div *ngFor="let answer of thenQuestion.answers">
-                            <label>
-                              <input type="radio" name="thenQuestion{{thenIndex}}" [value]="answer" (click)="thenAnswer(thenQuestion, thenRadio)" #thenRadio> {{answer}}
-                            </label>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -95,10 +93,5 @@
         </div>
       </div>
     </div>
-    <div class="row" style="margin: 20px;">
-      <div style="text-align: center;">
-        <button class="btn btn-primary" (click)="submit()">Submit</button>
-      </div>
-    </div>
-  </form>
+  </div>
 </div>

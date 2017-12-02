@@ -51,7 +51,7 @@ export class SelectedQuestionComponent implements OnInit {
       independentQuestion.answers,
       independentRadio.value
     );
-    // console.log("INDEPENDENT Answer *************\n" + JSON.stringify(rootCase, undefined, 2));
+    console.log("INDEPENDENT Answer *************\n" + JSON.stringify(rootCase, undefined, 2));
   }
 
   ifAnswer(ifQuestion: any, ifRadio: HTMLInputElement) {
