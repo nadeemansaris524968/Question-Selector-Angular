@@ -16,6 +16,7 @@ import { Question } from '../models/question';
 })
 export class SelectedQuestionComponent implements OnInit {
   id: string;
+  caseNumber: number;
   cumulativeQuestion: any;
   independentQuestions: any[];
   ifThens: any[];
@@ -32,6 +33,7 @@ export class SelectedQuestionComponent implements OnInit {
     this.route.paramMap
       .subscribe((params) => {
         this.id = params.get('id');
+        this.caseNumber = +params.get('caseNumber');
       });
 
     this.questionSelectorService.getQuestion(this.id)

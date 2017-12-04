@@ -31,7 +31,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     RouterModule.forRoot([
       // { path: '', component: HomeComponent },
       { path: '', component: AllQuestionsComponent },
-      { path: 'selected-question/:id', component: SelectedQuestionComponent },
+      { path: 'selected-question/:id/:caseNumber', component: SelectedQuestionComponent },
       // { path: 'selected-question', component: NotFoundComponent },
     ])
   ],

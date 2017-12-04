@@ -6,13 +6,13 @@
 <div style="background-color:rgb(218, 216, 216); padding: 15px; border-radius: 10px;">
   <div *ngFor="let question of questions; index as i" class="media">
     <div class="media-left">
-      <a [routerLink]="['/selected-question', question._id]">
+      <a [routerLink]="['/selected-question', question._id, i+1]">
         <img class="avatar media-object" src="{{ question.img }}" alt="...">
       </a>
     </div>
     <div class="media-body">
       <h4 class="media-heading">
-        <a [routerLink]="['/selected-question', question._id]">Case {{i+1}}</a>
+        <a [routerLink]="['/selected-question', question._id, i+1]">Case {{i+1}}</a>
       </h4>
       <a href="#">Dummy link</a>
     </div>
