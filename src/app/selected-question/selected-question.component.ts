@@ -5,7 +5,7 @@ import { QuestionMedia } from '../models/question-media';
 import { Media } from './../models/media';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { SelectedQuestionService } from '../services/selected-question.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Question } from '../models/question';
 
@@ -25,7 +25,11 @@ export class SelectedQuestionComponent implements OnInit {
 
   });
 
-  constructor(private route: ActivatedRoute, private questionSelectorService: SelectedQuestionService) {
+  constructor(
+    private route: ActivatedRoute,
+    private questionSelectorService: SelectedQuestionService,
+    private router: Router
+  ) {
   }
 
   ngOnInit() {
@@ -85,6 +89,7 @@ export class SelectedQuestionComponent implements OnInit {
 
   submit(form: HTMLInputElement) {
     this.questionSelectorService.patchQuestion(this.cumulativeQuestion);
+    this.router.navigate(['/']);
   }
 
   // ************** HELPER METHODS ************** //
