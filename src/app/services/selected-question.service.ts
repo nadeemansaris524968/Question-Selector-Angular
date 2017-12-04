@@ -7,7 +7,7 @@ import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class SelectedQuestionService {
-  url = 'http://localhost:3500/questions';
+  url = 'http://localhost:3000/questions';
 
   constructor(private http: Http) { }
 
