@@ -1,4 +1,4 @@
-import { RootCase } from '../models/root-case';
+import { RootCase } from './../models/root-case';
 import { AnswerChoice } from '../models/answer-choice';
 import { QuestionText } from './../models/question-text';
 import { QuestionMedia } from '../models/question-media';
@@ -16,15 +16,13 @@ import { Question } from '../models/question';
 })
 export class SelectedQuestionComponent implements OnInit {
   id: string;
+  fileName: string;
   caseNumber: number;
   cumulativeQuestion: any;
   independentQuestions: any[];
   ifThens: any[];
   img: string;
-
-  form = new FormGroup({
-
-  });
+  rootCaseArray: RootCase[] = [];
 
   constructor(private route: ActivatedRoute, private questionSelectorService: SelectedQuestionService) {
   }
@@ -53,6 +51,8 @@ export class SelectedQuestionComponent implements OnInit {
       independentQuestion.answers,
       independentRadio.value
     );
+
+    this.rootCaseArray.push(rootCase);
   }
 
   ifAnswer(ifQuestion: any, ifRadio: HTMLInputElement) {
@@ -68,6 +68,8 @@ export class SelectedQuestionComponent implements OnInit {
       ifQuestion.if_question.answers,
       ifRadio.value
     );
+
+    this.rootCaseArray.push(rootCase);
   }
 
   thenAnswer(thenQuestion: any, thenRadio: HTMLInputElement) {
@@ -78,9 +80,11 @@ export class SelectedQuestionComponent implements OnInit {
       thenQuestion.answers,
       thenRadio.value
     );
+
+    this.rootCaseArray.push(rootCase);
   }
 
-  submit(form: HTMLInputElement) {
+  submit(formValue) {
     this.questionSelectorService.patchQuestion(this.cumulativeQuestion).subscribe();
   }
 

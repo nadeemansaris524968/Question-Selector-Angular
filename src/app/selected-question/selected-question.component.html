@@ -2,7 +2,7 @@
   <div style="text-align: center">
     <h2>Case {{caseNumber}}</h2>
   </div>
-  <form>
+  <form #form="ngForm" (ngSubmit)="submit(form.value)">
     <div class="row">
       <div class="col-lg-5">
         <div style="text-align: right">
@@ -100,11 +100,27 @@
     </div>
     <div class="row" style="margin: 20px;">
       <div class="col-lg-6">
-        <input type="text" class="form-control" placeholder="Save these questions: eg: lastname_case_number - ansari_86">
+        <div class="col-lg-6" style="text-align: right">
+          <label for="fileName">File Name:</label>
+        </div>
+        <div class="col-lg-6">
+          <input 
+            required 
+            ngModel 
+            #fileName="ngModel" 
+            id="fileName"
+            name="fileName" 
+            type="text" class="form-control" 
+            placeholder="Eg: lastname_case_number - ansari_86">.json
+            <div class="alert alert-danger" *ngIf="fileName.touched && !fileName.valid">
+              File Name is required.
+            </div>
+        </div>
       </div>
-      <div class="col-lg-6">
-        <button class="btn btn-primary" (click)="submit()">Submit</button>
+      <div class="col-lg-6" style="text-align: center">
+        <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button>
       </div>
     </div>
+    <p>{{ form.value | json}}</p>
   </form>
 </div>
