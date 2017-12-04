@@ -18,12 +18,12 @@ export class SelectedQuestionService {
   }
 
   patchQuestion(answeredQuestion: any) {
-    console.log(JSON.stringify(answeredQuestion, undefined, 2));
-    
-    this.http.patch(this.url + '/' + answeredQuestion._id, answeredQuestion);
+    return this.http.patch(this.url + '/' + answeredQuestion._id, answeredQuestion)
+      .map(response => response.json())
+      .catch(this.handleError);
   }
 
-  private handleError(error: Response){
+  private handleError(error: Response) {
     return Observable.throw(error);
   }
 }

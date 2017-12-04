@@ -44,18 +44,16 @@ export class SelectedQuestionComponent implements OnInit {
   }
 
   independentAnswer(independentQuestion: any, independentRadio: HTMLInputElement) {
-
     independentQuestion["answerChoice"] = independentRadio.value;
+    
     let rootCase = this.getQuestionAnswering(
       independentQuestion.text,
       independentQuestion.answers,
       independentRadio.value
     );
-    console.log("INDEPENDENT Answer *************\n" + JSON.stringify(rootCase, undefined, 2));
   }
 
   ifAnswer(ifQuestion: any, ifRadio: HTMLInputElement) {
-
     if (ifRadio.value === "Yes")
       ifQuestion.if_question["showThenQuestions"] = true;
     else
@@ -68,11 +66,9 @@ export class SelectedQuestionComponent implements OnInit {
       ifQuestion.if_question.answers,
       ifRadio.value
     );
-    // console.log("If Answer *************\n" + JSON.stringify(rootCase, undefined, 2));
   }
 
   thenAnswer(thenQuestion: any, thenRadio: HTMLInputElement) {
-
     thenQuestion["answerChoice"] = thenRadio.value;
 
     let rootCase = this.getQuestionAnswering(
@@ -80,11 +76,10 @@ export class SelectedQuestionComponent implements OnInit {
       thenQuestion.answers,
       thenRadio.value
     );
-    // console.log("THEN Answer *************\n" + JSON.stringify(rootCase, undefined, 2));
   }
 
   submit(form: HTMLInputElement) {
-    this.questionSelectorService.patchQuestion(this.cumulativeQuestion);
+    this.questionSelectorService.patchQuestion(this.cumulativeQuestion).subscribe();
   }
 
   // ************** HELPER METHODS ************** //
