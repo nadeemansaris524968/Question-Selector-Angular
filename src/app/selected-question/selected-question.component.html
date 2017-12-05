@@ -85,7 +85,7 @@
                         </label>
                         <div *ngFor="let answer of thenQuestion.answers">
                           <label>
-                            <input type="radio" name="thenQuestion{{thenIndex}}" [value]="answer" (click)="thenAnswer(thenQuestion, thenRadio)" #thenRadio> {{answer}}
+                            <input type="radio" name="ifQuestion{{ifIndex}}thenQuestion{{thenIndex}}" [value]="answer" (click)="thenAnswer(thenQuestion, thenRadio)" #thenRadio> {{answer}}
                           </label>
                         </div>
                       </div>
