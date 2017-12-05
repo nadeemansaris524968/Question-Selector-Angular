@@ -61,10 +61,21 @@ export class SelectedQuestionComponent implements OnInit {
   }
 
   ifAnswer(ifQuestion: any, ifRadio: HTMLInputElement) {
-    if (ifRadio.value === "Yes")
+    if (ifRadio.value === "Yes") {
       ifQuestion.if_question["showThenQuestions"] = true;
-    else
+    }
+    else {
       ifQuestion.if_question["showThenQuestions"] = false;
+
+      // This will remove "answerChoice" property from all the objs in 
+      // "then_questions"[] because we do not want to remember the "then_question"
+      //  objs answers if parent "if" question's "showThenQuestions" was set to false
+      ifQuestion.then_questions.forEach((thenQuestion) => {
+        if ("answerChoice" in thenQuestion){
+          delete thenQuestion['answerChoice'];
+        }
+      });
+    }
 
     ifQuestion.if_question["answerChoice"] = ifRadio.value;
 
@@ -142,7 +153,7 @@ export class SelectedQuestionComponent implements OnInit {
     rootCase.name = "Case_" + this.caseNumber + "_" + date;
     rootCase.addQuestions(question);
 
-    console.log("Root case: " + JSON.stringify(rootCase, undefined, 2));
+    // console.log("Root case: " + JSON.stringify(rootCase, undefined, 2));
     return rootCase;
   }
 
