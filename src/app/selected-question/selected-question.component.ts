@@ -22,10 +22,6 @@ export class SelectedQuestionComponent implements OnInit {
   ifThens: any[];
   img: string;
 
-  form = new FormGroup({
-
-  });
-
   constructor(private route: ActivatedRoute, private questionSelectorService: SelectedQuestionService) {
   }
 
@@ -124,8 +120,11 @@ export class SelectedQuestionComponent implements OnInit {
 
     let question = this.createQuestion(text, answerChoices, answerChoice);
     let rootCase = new RootCase();
+    let date = new Date().getTime();
+    rootCase.name = "Case_"+this.caseNumber+"_"+date;
     rootCase.addQuestions(question);
 
+    console.log("Root case: "+JSON.stringify(rootCase, undefined, 2));
     return rootCase;
   }
 
