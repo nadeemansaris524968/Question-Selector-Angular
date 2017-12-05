@@ -12,8 +12,8 @@ export class QuestionAnsweringService {
 
   constructor(private http: Http) { }
 
-  postQuestion(rootCase: RootCase) {
-    return this.http.post(this.url, JSON.stringify(rootCase))
+  postQuestion(rootCase: any) {
+    return this.http.post(this.url, rootCase)
       .map(response => response.json())
       .catch(this.handleError);
   }

@@ -56,8 +56,8 @@ export class SelectedQuestionComponent implements OnInit {
     console.log(JSON.stringify(rootCase, undefined, 2));
 
     // Posting to Crunchify service
-    // this.questionAnsweringService.postQuestion(rootCase)
-    //   .subscribe();        
+    this.questionAnsweringService.postQuestion(rootCase)
+      .subscribe();        
   }
 
   ifAnswer(ifQuestion: any, ifRadio: HTMLInputElement) {
@@ -86,8 +86,8 @@ export class SelectedQuestionComponent implements OnInit {
     );
 
     // Posting to crunchify
-    // this.questionAnsweringService.postQuestion(rootCase)
-    //   .subscribe();
+    this.questionAnsweringService.postQuestion(rootCase)
+      .subscribe();
   }
 
   thenAnswer(thenQuestion: any, thenRadio: HTMLInputElement) {
@@ -100,8 +100,8 @@ export class SelectedQuestionComponent implements OnInit {
     );
 
     // Posting to crunchify
-    // this.questionAnsweringService.postQuestion(rootCase)
-    //   .subscribe();
+    this.questionAnsweringService.postQuestion(rootCase)
+      .subscribe();
   }
 
   submit(form: HTMLInputElement) {
