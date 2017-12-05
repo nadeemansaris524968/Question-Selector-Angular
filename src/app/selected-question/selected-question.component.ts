@@ -1,4 +1,5 @@
-import { RootCase } from '../models/root-case';
+import { RootCase } from './../models/root-case';
+import { QuestionAnsweringService } from '../services/question-answering.service';
 import { AnswerChoice } from '../models/answer-choice';
 import { QuestionText } from './../models/question-text';
 import { QuestionMedia } from '../models/question-media';
@@ -22,7 +23,10 @@ export class SelectedQuestionComponent implements OnInit {
   ifThens: any[];
   img: string;
 
-  constructor(private route: ActivatedRoute, private questionSelectorService: SelectedQuestionService) {
+  constructor(
+    private route: ActivatedRoute,
+    private questionSelectorService: SelectedQuestionService,
+    private questionAnsweringService: QuestionAnsweringService) {
   }
 
   ngOnInit() {
@@ -43,12 +47,17 @@ export class SelectedQuestionComponent implements OnInit {
 
   independentAnswer(independentQuestion: any, independentRadio: HTMLInputElement) {
     independentQuestion["answerChoice"] = independentRadio.value;
-    
+
     let rootCase = this.getQuestionAnswering(
       independentQuestion.text,
       independentQuestion.answers,
       independentRadio.value
     );
+    console.log(JSON.stringify(rootCase, undefined, 2));
+
+    // Posting to Crunchify service
+    // this.questionAnsweringService.postQuestion(rootCase)
+    //   .subscribe();        
   }
 
   ifAnswer(ifQuestion: any, ifRadio: HTMLInputElement) {
@@ -64,6 +73,10 @@ export class SelectedQuestionComponent implements OnInit {
       ifQuestion.if_question.answers,
       ifRadio.value
     );
+
+    // Posting to crunchify
+    // this.questionAnsweringService.postQuestion(rootCase)
+    //   .subscribe();
   }
 
   thenAnswer(thenQuestion: any, thenRadio: HTMLInputElement) {
@@ -74,9 +87,14 @@ export class SelectedQuestionComponent implements OnInit {
       thenQuestion.answers,
       thenRadio.value
     );
+
+    // Posting to crunchify
+    // this.questionAnsweringService.postQuestion(rootCase)
+    //   .subscribe();
   }
 
   submit(form: HTMLInputElement) {
+    // Posting to Node Back-end
     this.questionSelectorService.patchQuestion(this.cumulativeQuestion).subscribe();
   }
 
@@ -121,10 +139,10 @@ export class SelectedQuestionComponent implements OnInit {
     let question = this.createQuestion(text, answerChoices, answerChoice);
     let rootCase = new RootCase();
     let date = new Date().getTime();
-    rootCase.name = "Case_"+this.caseNumber+"_"+date;
+    rootCase.name = "Case_" + this.caseNumber + "_" + date;
     rootCase.addQuestions(question);
 
-    console.log("Root case: "+JSON.stringify(rootCase, undefined, 2));
+    console.log("Root case: " + JSON.stringify(rootCase, undefined, 2));
     return rootCase;
   }
 
