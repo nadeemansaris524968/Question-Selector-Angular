@@ -3,7 +3,7 @@
     <a [routerLink]="['/selected-question', question._id]">{{question._id}}</a>
   </li>
 </ul> -->
-<div style="background-color:rgb(218, 216, 216); padding: 15px; border-radius: 10px;">
+<!-- <div style="background-color:rgb(218, 216, 216); padding: 15px; border-radius: 10px;">
   <div *ngFor="let question of questions; index as i" class="media">
     <div class="media-left">
       <a [routerLink]="['/selected-question', question._id, i+1]">
@@ -15,6 +15,42 @@
         <a [routerLink]="['/selected-question', question._id, i+1]">Case {{i+1}}</a>
       </h4>
       <a href="#">Dummy link</a>
+    </div>
+  </div>
+</div> -->
+<div class="container-fluid">
+  <div style="text-align: center">
+    <div class="row">
+      <div class="col-lg-2">
+      </div>
+      <div class="col-lg-8">
+        <table style="width: auto;" class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Case #</th>
+              <th scope="col">Case</th>
+              <th scope="col">Answered</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let question of questions; index as i" [class.success]="question.isAnswered">
+              <th scope="row" class="col-md-1">
+                {{i+1}}
+              </th>
+              <td class="col-md-2">
+                <a [routerLink]="['/selected-question', question._id, i+1]">
+                  <img class="avatar media-object" src="{{ question.img }}" alt="...">
+                </a>
+              </td>
+              <td class="col-md-1">
+                <span class="glyphicon glyphicon-ok" *ngIf="question.isAnswered"></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-lg-2">
+      </div>
     </div>
   </div>
 </div>
