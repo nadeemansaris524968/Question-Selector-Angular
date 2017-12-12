@@ -1,3 +1,5 @@
+import { AuthService } from './services/auth.service';
+import { LoginComponent } from './login/login.component';
 import { QuestionAnsweringService } from './services/question-answering.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectedQuestionService } from './services/selected-question.service';
@@ -20,6 +22,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AppComponent,
     NavbarComponent,
     AllQuestionsComponent,
+    LoginComponent,
     SelectedQuestionComponent,
     HomeComponent,
     NotFoundComponent
@@ -34,11 +37,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
       // { path: '', component: HomeComponent },
       { path: '', component: AllQuestionsComponent },
       { path: 'selected-question/:id/:caseNumber', component: SelectedQuestionComponent },
+      { path: 'login', component: LoginComponent }
       // { path: 'selected-question', component: NotFoundComponent },
     ])
   ],
   providers: [
     AllQuestionsService,
+    AuthService,
     SelectedQuestionService,
     QuestionAnsweringService
   ],
