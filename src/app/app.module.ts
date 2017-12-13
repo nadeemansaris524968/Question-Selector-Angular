@@ -1,3 +1,5 @@
+import { AuthService } from './services/auth.service';
+import { LoginComponent } from './login/login.component';
 import { QuestionAnsweringService } from './services/question-answering.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectedQuestionService } from './services/selected-question.service';
@@ -5,6 +7,7 @@ import { HttpModule } from '@angular/http';
 import { AllQuestionsService } from './services/all-questions.service';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -19,6 +22,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AppComponent,
     NavbarComponent,
     AllQuestionsComponent,
+    LoginComponent,
     SelectedQuestionComponent,
     HomeComponent,
     NotFoundComponent
@@ -26,17 +30,20 @@ import { NotFoundComponent } from './not-found/not-found.component';
   imports: [
     HttpModule,
     BrowserModule,
+    NgxDatatableModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       // { path: '', component: HomeComponent },
       { path: '', component: AllQuestionsComponent },
       { path: 'selected-question/:id/:caseNumber', component: SelectedQuestionComponent },
+      { path: 'login', component: LoginComponent }
       // { path: 'selected-question', component: NotFoundComponent },
     ])
   ],
   providers: [
     AllQuestionsService,
+    AuthService,
     SelectedQuestionService,
     QuestionAnsweringService
   ],
