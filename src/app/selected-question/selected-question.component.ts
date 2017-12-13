@@ -43,11 +43,15 @@ export class SelectedQuestionComponent implements OnInit {
     }
     else {
       this.questionSelectorService.getQuestion(this.id)
-        .subscribe((question) => {
+        .subscribe(
+        question => {
           this.cumulativeQuestion = question;
           this.independentQuestions = question.independent;
           this.ifThens = question.if_thens;
           this.img = question.img;
+        },
+        error => {
+          alert('Woops! Couldn\'t reach the server for this particular question.');
         });
     }
   }
@@ -64,7 +68,12 @@ export class SelectedQuestionComponent implements OnInit {
 
     // Posting to Crunchify service
     this.questionAnsweringService.postQuestion(rootCase)
-      .subscribe();
+      .subscribe(
+        response => {},
+        (error: Response) => {
+          alert('Oh man! Looks like the Crunchify Service is not running.');
+        }
+      );
   }
 
   ifAnswer(ifQuestion: any, ifRadio: HTMLInputElement) {
@@ -94,7 +103,12 @@ export class SelectedQuestionComponent implements OnInit {
 
     // Posting to crunchify
     this.questionAnsweringService.postQuestion(rootCase)
-      .subscribe();
+      .subscribe(
+        response => {},
+        (error: Response) => {
+          alert('Oh man! Looks like the Crunchify Service is not running.');
+        }
+      );
   }
 
   thenAnswer(thenQuestion: any, thenRadio: HTMLInputElement) {
@@ -108,12 +122,24 @@ export class SelectedQuestionComponent implements OnInit {
 
     // Posting to crunchify
     this.questionAnsweringService.postQuestion(rootCase)
-      .subscribe();
+      .subscribe(
+        response => {},
+        (error: Response) => {
+          alert('Oh man! Looks like the Crunchify Service is not running.');
+        }
+      );
   }
 
   submit(form: HTMLInputElement) {
     // Posting to Node Back-end
-    this.questionSelectorService.patchQuestion(this.cumulativeQuestion).subscribe();
+    this.questionSelectorService.patchQuestion(this.cumulativeQuestion).subscribe(
+      (response) => { 
+        alert('Submitted successfully!');
+      },
+      (error) => {
+        alert('Aww! Couldn\'t submit the question :(');
+        // this.router.navigate(['/']);
+      });
   }
 
   // ************** HELPER METHODS ************** //

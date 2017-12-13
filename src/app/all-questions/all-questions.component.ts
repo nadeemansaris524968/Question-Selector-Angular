@@ -12,9 +12,13 @@ export class AllQuestionsComponent implements OnInit {
   constructor(private service: AllQuestionsService) { }
 
   ngOnInit() {
-    this.service.getAllQuestions().subscribe((questions) => {
-      this.questions = questions;
-    });
+    this.service.getAllQuestions().subscribe(
+      questions => {
+        this.questions = questions;
+      },
+      error => {
+        alert('Oops! Looks like the server is not running.');
+      });
   }
 
 }

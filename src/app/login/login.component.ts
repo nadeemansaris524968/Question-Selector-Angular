@@ -8,19 +8,28 @@ import { Router } from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  invalidLogin: boolean; 
+  invalidLogin: boolean;
 
   constructor(
-    private router: Router, 
+    private router: Router,
     private authService: AuthService) { }
 
   signIn(credentials) {
     this.authService.login(credentials)
-      .subscribe(result => { 
-        if (result)
+      .subscribe(
+      result => {
+        if (result) {
+          this.invalidLogin = false;
           this.router.navigate(['/']);
-        else  
-          this.invalidLogin = true; 
+        }
+      },
+      (error: Response) => {
+        if (error.status === 400) {
+          this.invalidLogin = true;
+        }
+        else {
+          alert('Uh oh! Looks like the server is not running.');
+        }
       });
   }
 }
