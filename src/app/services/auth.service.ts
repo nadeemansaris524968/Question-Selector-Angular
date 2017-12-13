@@ -32,7 +32,10 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return false;
+    if (localStorage.getItem('token'))
+      return true;
+    else
+      return false;
   }
 }
 

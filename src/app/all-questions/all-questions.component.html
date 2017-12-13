@@ -22,10 +22,12 @@
                 </a>
               </td>
               <td>
-                <p *ngIf="question._answeredBy">{{question._answeredBy}}</p>
+                <a [routerLink]="['/selected-question', question._id, i+1]">
+                  <p *ngIf="question._answeredBy">{{question._answeredBy}}</p>
+                </a>
               </td>
               <td>
-                <span class="glyphicon glyphicon-ok" *ngIf="question.isAnswered"></span>
+                <span [routerLink]="['/selected-question', question._id, i+1]" class="glyphicon glyphicon-ok" *ngIf="question.isAnswered"></span>
               </td>
             </tr>
           </tbody>

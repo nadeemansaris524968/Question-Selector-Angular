@@ -5,13 +5,13 @@
         <li routerLinkActive="active">
           <a routerLink="/">All Questions</a>
         </li>
-        <li routerLinkActive="active">
+        <li routerLinkActive="active" *ngIf="authService.isLoggedIn()">
           <a routerLink="/selected-question">Selected Question</a>
         </li>
-        <li routerLinkActive="active">
+        <li routerLinkActive="active" *ngIf="!authService.isLoggedIn()">
           <a routerLink="/login">Login</a>
         </li>
-        <li routerLinkActive="active">
+        <li routerLinkActive="active" *ngIf="authService.isLoggedIn()">
           <a (click)="authService.logout()">Logout</a>
         </li>
       </ul>

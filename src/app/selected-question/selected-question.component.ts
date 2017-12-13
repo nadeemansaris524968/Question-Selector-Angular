@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { RootCase } from './../models/root-case';
 import { QuestionAnsweringService } from '../services/question-answering.service';
 import { AnswerChoice } from '../models/answer-choice';
@@ -24,6 +25,7 @@ export class SelectedQuestionComponent implements OnInit {
   img: string;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private questionSelectorService: SelectedQuestionService,
     private questionAnsweringService: QuestionAnsweringService) {
@@ -36,13 +38,18 @@ export class SelectedQuestionComponent implements OnInit {
         this.caseNumber = +params.get('caseNumber');
       });
 
-    this.questionSelectorService.getQuestion(this.id)
-      .subscribe((question) => {
-        this.cumulativeQuestion = question;
-        this.independentQuestions = question.independent;
-        this.ifThens = question.if_thens;
-        this.img = question.img;
-      });
+    if (!localStorage.getItem('token')) {
+      this.router.navigate(['/login']);
+    }
+    else {
+      this.questionSelectorService.getQuestion(this.id)
+        .subscribe((question) => {
+          this.cumulativeQuestion = question;
+          this.independentQuestions = question.independent;
+          this.ifThens = question.if_thens;
+          this.img = question.img;
+        });
+    }
   }
 
   independentAnswer(independentQuestion: any, independentRadio: HTMLInputElement) {
@@ -57,7 +64,7 @@ export class SelectedQuestionComponent implements OnInit {
 
     // Posting to Crunchify service
     this.questionAnsweringService.postQuestion(rootCase)
-      .subscribe();        
+      .subscribe();
   }
 
   ifAnswer(ifQuestion: any, ifRadio: HTMLInputElement) {
@@ -71,7 +78,7 @@ export class SelectedQuestionComponent implements OnInit {
       // "then_questions"[] because we do not want to remember the "then_question"
       //  objs answers if parent "if" question's "showThenQuestions" was set to false
       ifQuestion.then_questions.forEach((thenQuestion) => {
-        if ("answerChoice" in thenQuestion){
+        if ("answerChoice" in thenQuestion) {
           delete thenQuestion['answerChoice'];
         }
       });
