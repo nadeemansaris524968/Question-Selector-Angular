@@ -40,7 +40,7 @@ import { SignupComponent } from './signup/signup.component';
       { path: '', component: AllQuestionsComponent },
       { path: 'selected-question/:id/:caseNumber', component: SelectedQuestionComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'signup', component: SignupComponent }
+      // { path: 'signup', component: SignupComponent }
       // { path: 'selected-question', component: NotFoundComponent },
     ])
   ],
