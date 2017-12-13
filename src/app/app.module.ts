@@ -7,7 +7,6 @@ import { HttpModule } from '@angular/http';
 import { AllQuestionsService } from './services/all-questions.service';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -32,7 +31,6 @@ import { SignupComponent } from './signup/signup.component';
   imports: [
     HttpModule,
     BrowserModule,
-    NgxDatatableModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
