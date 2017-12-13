@@ -16,7 +16,7 @@
         <a>{{welcomeMessage}}</a>
       </li>
       <li routerLinkActive="active" *ngIf="!authService.isLoggedIn()">
-        <a href="#">
+        <a routerLink="/signup">
           <span class="glyphicon glyphicon-user"></span> Sign Up</a>
       </li>
       <li routerLinkActive="active" *ngIf="!authService.isLoggedIn()">

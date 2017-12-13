@@ -16,6 +16,7 @@ import { AllQuestionsComponent } from './all-questions/all-questions.component';
 import { SelectedQuestionComponent } from './selected-question/selected-question.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     LoginComponent,
     SelectedQuestionComponent,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SignupComponent
   ],
   imports: [
     HttpModule,
@@ -37,7 +39,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
       // { path: '', component: HomeComponent },
       { path: '', component: AllQuestionsComponent },
       { path: 'selected-question/:id/:caseNumber', component: SelectedQuestionComponent },
-      { path: 'login', component: LoginComponent }
+      { path: 'login', component: LoginComponent },
+      { path: 'signup', component: SignupComponent }
       // { path: 'selected-question', component: NotFoundComponent },
     ])
   ],
