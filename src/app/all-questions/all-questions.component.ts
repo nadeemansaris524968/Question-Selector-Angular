@@ -17,7 +17,7 @@ export class AllQuestionsComponent implements OnInit {
     if (localStorage.getItem('token')) {
       this.service.getAllQuestions().subscribe(
         questions => {
-          if (this.questions.length === 0)
+          if (questions.length === 0)
             this.noQuestions = true;
           else
             this.noQuestions = false;

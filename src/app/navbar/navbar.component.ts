@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
       let jwtHelper = new JwtHelper();
       let token = localStorage.getItem('token');
       let decoded = jwtHelper.decodeToken(token)
-      this.welcomeMessage = 'Welcome ' + decoded.firstName + decoded.lastName + '!';
+      this.welcomeMessage = 'Welcome ' + decoded.firstName + ' ' + decoded.lastName + '!';
     }
   }
 
