@@ -7,7 +7,6 @@
             <tr>
               <th scope="col">Case #</th>
               <th scope="col">Case</th>
-              <th scope="col">Answered By</th>
               <th scope="col">Answered</th>
             </tr>
           </thead>
@@ -19,11 +18,6 @@
               <td>
                 <a [routerLink]="['/selected-question', question._id, i+1]">
                   <img class="avatar media-object" src="{{ question.img }}" alt="...">
-                </a>
-              </td>
-              <td>
-                <a [routerLink]="['/selected-question', question._id, i+1]">
-                  <p *ngIf="question._answeredBy">{{question._answeredBy}}</p>
                 </a>
               </td>
               <td>
