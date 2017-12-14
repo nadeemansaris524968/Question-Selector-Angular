@@ -20,5 +20,4 @@ export class AllQuestionsComponent implements OnInit {
         alert('Oops! Looks like the server is not running.');
       });
   }
-
 }
