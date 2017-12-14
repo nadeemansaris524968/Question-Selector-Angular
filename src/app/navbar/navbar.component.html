@@ -24,7 +24,7 @@
           <span class="glyphicon glyphicon-log-in"></span> Login</a>
       </li>
       <li routerLinkActive="active" *ngIf="authService.isLoggedIn()">
-        <a (click)="authService.logout()">
+        <a (click)="logoutUser()">
           <span class="glyphicon glyphicon-log-out"></span> Logout</a>
       </li>
     </ul>

@@ -27,7 +27,7 @@ export class AuthService {
       var options = new RequestOptions({ headers: headers });
 
       localStorage.removeItem('token');
-      return this.http.delete(this.logoutURL, options).subscribe();
+      return this.http.delete(this.logoutURL, options);
     }
   }
 
