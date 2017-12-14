@@ -1,6 +1,9 @@
 <div class="container">
   <div style="text-align: center">
-    <div class="row">
+    <div *ngIf="noQuestions">
+      <p>No questions have been assigned to you yet.</p>
+    </div>
+    <div class="row" *ngIf="!noQuestions">
       <div>
         <table class="table table-bordered table-hover">
           <thead>

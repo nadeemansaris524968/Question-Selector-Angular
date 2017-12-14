@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AllQuestionsService } from './../services/all-questions.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,17 +8,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./all-questions.component.css']
 })
 export class AllQuestionsComponent implements OnInit {
+  noQuestions: boolean;
   questions = [];
 
-  constructor(private service: AllQuestionsService) { }
+  constructor(private router: Router, private service: AllQuestionsService) { }
 
   ngOnInit() {
-    this.service.getAllQuestions().subscribe(
-      questions => {
-        this.questions = questions;
-      },
-      error => {
-        alert('Oops! Looks like the server is not running.');
-      });
+    if (localStorage.getItem('token')) {
+      this.service.getAllQuestions().subscribe(
+        questions => {
+          if (this.questions.length === 0)
+            this.noQuestions = true;
+          else
+            this.noQuestions = false;
+
+          this.questions = questions;
+        });
+    }
+    else {
+      this.router.navigate(['/login']);
+    }
   }
 }
