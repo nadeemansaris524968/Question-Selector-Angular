@@ -51,7 +51,7 @@ export class SelectedQuestionComponent implements OnInit {
           this.img = question.img;
         },
         error => {
-          alert('Woops! Couldn\'t reach the server for this particular question.');
+          alert('Woops! Couldn\'t reach the Node server for this particular question.');
         });
     }
   }
@@ -71,7 +71,7 @@ export class SelectedQuestionComponent implements OnInit {
       .subscribe(
         response => {},
         (error: Response) => {
-          alert('Oh man! Looks like the Crunchify Service is not running.');
+          console.log('Oh man! Looks like the Crunchify Service is not running.');
         }
       );
   }
@@ -106,7 +106,7 @@ export class SelectedQuestionComponent implements OnInit {
       .subscribe(
         response => {},
         (error: Response) => {
-          alert('Oh man! Looks like the Crunchify Service is not running.');
+          console.log('Oh man! Looks like the Crunchify Service is not running.');
         }
       );
   }
@@ -125,7 +125,7 @@ export class SelectedQuestionComponent implements OnInit {
       .subscribe(
         response => {},
         (error: Response) => {
-          alert('Oh man! Looks like the Crunchify Service is not running.');
+          console.log('Oh man! Looks like the Crunchify Service is not running.');
         }
       );
   }

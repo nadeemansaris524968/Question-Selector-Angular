@@ -16,7 +16,7 @@
           <div *ngIf="independentQuestions.length > 0">
             <h2>Independent Questions</h2>
             <!-- Each Independent Question -->
-            <div *ngFor="let question of independentQuestions; let indIndex = index">
+            <div *ngFor="let question of independentQuestions; let indIndex = index">     
               <div *ngIf="question.answers">
                 <div class="form-group">
                   <label for="questionText">
@@ -31,7 +31,7 @@
                     </label>
                     <div *ngFor="let answer of question.answers">
                       <label>
-                        <input type="radio" name="independentQuestion{{indIndex}}" [value]="answer" (click)="independentAnswer(question, independentRadio)"
+                        <input type="radio" name="independentQuestion{{indIndex}}" [checked]="question.answerChoice === answer" [value]="answer" (click)="independentAnswer(question, independentRadio)"
                           #independentRadio> {{answer}}
                       </label>
                     </div>
@@ -62,7 +62,7 @@
                   </label>
                   <div *ngFor="let answer of question.if_question.answers">
                     <label>
-                      <input type="radio" name="ifQuestion{{ifIndex}}" [value]="answer" (click)="ifAnswer(question, ifRadio)" #ifRadio> {{answer}}
+                      <input type="radio" name="ifQuestion{{ifIndex}}" [checked]="question.if_question.answerChoice === answer" [value]="answer" (click)="ifAnswer(question, ifRadio)" #ifRadio> {{answer}}
                     </label>
                   </div>
                 </div>
@@ -85,7 +85,7 @@
                         </label>
                         <div *ngFor="let answer of thenQuestion.answers">
                           <label>
-                            <input type="radio" name="ifQuestion{{ifIndex}}thenQuestion{{thenIndex}}" [value]="answer" (click)="thenAnswer(thenQuestion, thenRadio)" #thenRadio> {{answer}}
+                            <input type="radio" name="ifQuestion{{ifIndex}}thenQuestion{{thenIndex}}" [checked]="thenQuestion.answerChoice === answer" [value]="answer" (click)="thenAnswer(thenQuestion, thenRadio)" #thenRadio> {{answer}}
                           </label>
                         </div>
                       </div>
