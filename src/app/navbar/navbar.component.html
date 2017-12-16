@@ -5,10 +5,10 @@
     </div>
     <ul class="nav navbar-nav">
       <li routerLinkActive="active">
-        <a routerLink="/">All Questions</a>
+        <a routerLink="/">All Cases</a>
       </li>
       <li routerLinkActive="active" *ngIf="authService.isLoggedIn()">
-        <a routerLink="/selected-question">Selected Question</a>
+        <a routerLink="/selected-question">Selected Case</a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
