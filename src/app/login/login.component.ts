@@ -8,7 +8,8 @@ import { Router } from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  invalidLogin: boolean;
+  incorrectPassword: boolean;
+  noUser: boolean;
 
   constructor(
     private router: Router,
@@ -19,13 +20,16 @@ export class LoginComponent {
       .subscribe(
       result => {
         if (result) {
-          this.invalidLogin = false;
+          this.incorrectPassword = false;
           this.router.navigate(['/']);
         }
       },
       (error: Response) => {
-        if (error.status === 400) {
-          this.invalidLogin = true;
+        if (error.status === 400 && error['_body'] === 'Incorrect Password') {
+          this.incorrectPassword = true;
+        }
+        else if (error.status === 400 && error['_body'] === 'No user exists') {
+          this.noUser = true;
         }
         else {
           alert('Uh oh! Looks like the server is not running.');
