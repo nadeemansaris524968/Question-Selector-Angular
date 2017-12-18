@@ -4,9 +4,21 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService {
+  signupURL = 'http://localhost:3000/users';
   loginURL = 'http://localhost:3000/users/login';
   logoutURL = 'http://localhost:3000/users/me/token';
   constructor(private http: Http) {
+  }
+
+  signup(userDetails) {
+    return this.http.post(this.signupURL, userDetails)
+      .map(response => {
+        if (response && response.headers.has('x-auth')) {
+          localStorage.setItem('token', response.headers.get('x-auth'));
+          return true;
+        }
+        return false;
+      })
   }
 
   login(credentials) {
